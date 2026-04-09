@@ -6,6 +6,6 @@ import type { Task } from '@/types/task';
 
 export function useArchiveTask() {
   return useMutation({
-    mutationFn: (taskId: string) => apiClient.patch<Task>(`/tasks/${taskId}/archive`),
+    mutationFn: (taskId: string) => apiClient.patch<Task>(`/tasks/${taskId}`, { status: 'archived' }),
   });
 }

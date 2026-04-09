@@ -1,11 +1,11 @@
-# Task Dashboard — Take-Home Assessment
+# Task Dashboard Take-Home Assessment
 
 ## Overview
 
 A simplified task management dashboard. The codebase has two components:
 
-- **`task-service/`** — .NET REST API with an in-memory task store
-- **`task-dashboard/`** — Next.js frontend
+- **`task-service/`** - .NET REST API with an in-memory task store
+- **`task-dashboard/`** - Next.js frontend
 
 ---
 
@@ -41,7 +41,7 @@ Dashboard available at `http://localhost:3000`.
 
 ## What Exists
 
-The dashboard shows tasks across three tabs — **In Progress**, **Completed**, and **Archived** — with actions available on active tasks.
+The dashboard shows tasks across three tabs: **In Progress**, **Completed**, and **Archived**, with actions available on active tasks.
 
 ---
 
@@ -53,11 +53,11 @@ Archiving a task doesn't behave correctly. The API call succeeds, but the UI doe
 
 ### 2. Add a confirmation dialog
 
-The product owner wants a confirmation step before a task is archived — the user should be prompted to confirm before the action fires.
+The product owner wants a confirmation step before a task is archived. The user should be prompted to confirm before the action fires.
 
 ### Bonus
 
-If you have time, improve anything about the experience that you think could be better. There's no right answer here — use it to show us how you think.
+If you have time, improve anything about the experience that you think could be better. There's no right answer here, use it to show us how you think.
 
 ---
 
@@ -67,15 +67,15 @@ Before writing new code, have a look at what's already in the codebase. There ar
 
 ## What We're Looking For
 
-- **Pattern recognition** — does the implementation follow the conventions already in the codebase?
-- **UX polish** — loading states, disabled buttons during in-flight requests
-- **Clean code** — readable, no unnecessary complexity
+- **Pattern recognition** - does the implementation follow the conventions already in the codebase?
+- **UX polish** - loading states, disabled buttons during in-flight requests
+- **Clean code** - readable, no unnecessary complexity
 
 ---
 
 ## Notes
 
-- No authentication — the frontend calls `http://localhost:5000` directly
+- No authentication. The frontend calls `http://localhost:5000` directly
 - Task state is held in memory; restarting `dotnet run` resets it
 - You may install additional packages if you need them, but the existing setup should be sufficient
 - The React Query DevTools (bottom-right corner) may be useful for debugging

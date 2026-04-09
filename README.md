@@ -49,7 +49,7 @@ The dashboard shows tasks across three tabs: **In Progress**, **Completed**, and
 
 ### 1. Fix the archive bug
 
-Archiving a task doesn't behave correctly. The API call succeeds, but the UI doesn't reflect the change. Find and fix it.
+Archiving a task doesn't behave correctly. The API returns 200, but the UI doesn't reflect the change. Find and fix it.
 
 ### 2. Add a confirmation dialog
 

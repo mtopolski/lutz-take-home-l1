@@ -26,7 +26,7 @@ export function ArchiveButton({ taskId }: ArchiveButtonProps) {
       disabled={isPending}
       className="text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50"
     >
-      {isPending ? 'Arcchiving…' : 'Archive'}
+        {isPending ? 'Archiving…' : 'Archive'}
     </button>
       
       <ConfirmDialog

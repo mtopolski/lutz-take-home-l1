@@ -28,5 +28,15 @@ export function ArchiveButton({ taskId }: ArchiveButtonProps) {
     >
       {isPending ? 'Arcchiving…' : 'Archive'}
     </button>
+      
+      <ConfirmDialog
+        open={isDialogOpen}
+        onConfirm={handleConfirm}
+        title="Archive Task"
+        description="Are you sure you want to archive this task?"
+        onOpenChange={(open) => setIsDialogOpen(open)}
+        children={null}
+      />
+    </>
   );
 }

@@ -21,13 +21,13 @@ export function CompleteButton({ taskId }: CompleteButtonProps) {
 
   return (
     <>
-    <button
+      <button
         onClick={openDialog}
-      disabled={isPending}
-      className="text-sm font-medium text-green-700 hover:text-green-900 disabled:opacity-50"
-    >
-      {isPending ? 'Completing…' : 'Complete'}
-    </button>
+        disabled={isPending}
+        className="px-2 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 active:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      >
+        {isPending ? 'Completing…' : 'Complete'}
+      </button>
       
       <ConfirmDialog
         open={isDialogOpen}

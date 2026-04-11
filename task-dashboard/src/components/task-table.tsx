@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useGetTasks } from '@/hooks/use-get-tasks';
 import { CompleteButton } from './complete-button';
+import { StartButton } from './start-button';
 import { ArchiveButton } from './archive-button';
 import type { Task } from '@/types/task';
 
@@ -53,7 +54,7 @@ export function TaskTable() {
     <div>
       <div className="flex border-b">
         {tabs.map((tab) => (
-          <button
+          <button 
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-3 text-sm font-medium transition-colors ${
@@ -104,7 +105,12 @@ export function TaskTable() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-4">
                         <div className="w-24">
-                        <CompleteButton taskId={task.id} />
+                          {task.status === "in-progress" && (
+                            <CompleteButton taskId={task.id} />
+                          )}
+                          {task.status === "not-started" && (
+                            <StartButton taskId={task.id} />
+                          )}
                         </div>
                         <ArchiveButton taskId={task.id} />
                       </div>

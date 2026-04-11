@@ -45,6 +45,10 @@ export function TaskTable() {
 
   const visibleTasks = filterByTab(tasks, activeTab);
 
+  const getTabCount = (tab: Tab): number => {
+      return filterByTab(tasks, tab).length;
+  };
+
   return (
     <div>
       <div className="flex border-b">
@@ -59,6 +63,10 @@ export function TaskTable() {
             }`}
           >
             {tab.label}
+            <span
+                className="ml-1 text-gray-500">
+                ({getTabCount(tab.id)})
+            </span>
           </button>
         ))}
       </div>

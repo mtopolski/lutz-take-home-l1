@@ -12,6 +12,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<IMediator, Mediator>()
             .AddSingleton<IQueryHandler<GetTasksQuery, IReadOnlyList<WorkTask>>, GetTasksQueryHandler>()
             .AddSingleton<ICommandHandler<CompleteTaskCommand, WorkTask>, CompleteTaskCommandHandler>()
-            .AddSingleton<ICommandHandler<ArchiveTaskCommand, WorkTask>, ArchiveTaskCommandHandler>();
+            .AddSingleton<ICommandHandler<ArchiveTaskCommand, WorkTask>, ArchiveTaskCommandHandler>()
+            .AddSingleton<ICommandHandler<RestoreTaskCommand, WorkTask>, RestoreTaskCommandHandler>();
     }
 }

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useGetTasks } from '@/hooks/use-get-tasks';
 import { CompleteButton } from './complete-button';
 import { ArchiveButton } from './archive-button';
+import { RestoreButton } from './restore-button';
 import type { Task } from '@/types/task';
 
 type Tab = 'active' | 'completed' | 'archived';
@@ -28,6 +29,8 @@ const statusStyles: Record<string, string> = {
   archived: 'bg-amber-100 text-amber-700',
 };
 
+const tabsWithActions: Tab[] = ['active', 'archived'];
+
 function filterByTab(tasks: Task[], tab: Tab): Task[] {
   switch (tab) {
     case 'active':
@@ -44,6 +47,7 @@ export function TaskTable() {
   const { data: tasks } = useGetTasks();
 
   const visibleTasks = filterByTab(tasks, activeTab);
+  const showActions = tabsWithActions.includes(activeTab);
 
   return (
     <div>
@@ -74,7 +78,7 @@ export function TaskTable() {
                 <th className="px-4 py-3 text-left font-medium text-gray-600">Client</th>
                 <th className="px-4 py-3 text-left font-medium text-gray-600">Status</th>
                 <th className="px-4 py-3 text-left font-medium text-gray-600">Due Date</th>
-                {activeTab === 'active' && (
+                {showActions && (
                   <th className="px-4 py-3 text-left font-medium text-gray-600">Actions</th>
                 )}
               </tr>
@@ -98,6 +102,11 @@ export function TaskTable() {
                         <CompleteButton taskId={task.id} />
                         <ArchiveButton taskId={task.id} />
                       </div>
+                    </td>
+                  )}
+                  {activeTab === 'archived' && (
+                    <td className="px-4 py-3">
+                      <RestoreButton taskId={task.id} />
                     </td>
                   )}
                 </tr>

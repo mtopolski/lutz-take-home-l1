@@ -12,7 +12,7 @@ internal sealed class ArchiveTaskCommandHandler(ITaskRepository repository)
         var task = await repository.GetByIdAsync(command.TaskId, cancellationToken).ConfigureAwait(false)
             ?? throw new KeyNotFoundException($"Task '{command.TaskId}' not found.");
 
-        var updated = task.ChangeStatus(TaskStatuses.Completed);
+        var updated = task.ChangeStatus(TaskStatuses.Archived);
         return await repository.UpdateAsync(updated, cancellationToken).ConfigureAwait(false);
     }
 }

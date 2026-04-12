@@ -14,7 +14,7 @@ public sealed class UpdateTaskController(IMediator mediator) : ControllerBase
     [HttpPatch]
     public async Task<IActionResult> UpdateAsync([FromRoute] string id, [FromBody] UpdateTaskRequest request, CancellationToken cancellationToken)
     {
-        if (request.Status is not (TaskStatuses.Completed or TaskStatuses.Archived))
+        if (request.Status is not (TaskStatuses.NotStarted or TaskStatuses.Completed or TaskStatuses.Archived))
             return BadRequest($"Invalid status: {request.Status}");
 
         WorkTask task = request.Status switch
@@ -22,8 +22,11 @@ public sealed class UpdateTaskController(IMediator mediator) : ControllerBase
             TaskStatuses.Completed => await mediator
                 .ExecuteAsync<CompleteTaskCommand, WorkTask>(new CompleteTaskCommand(id), cancellationToken)
                 .ConfigureAwait(false),
-            _ => await mediator
+            TaskStatuses.Archived => await mediator
                 .ExecuteAsync<ArchiveTaskCommand, WorkTask>(new ArchiveTaskCommand(id), cancellationToken)
+                .ConfigureAwait(false),
+            _ => await mediator
+                .ExecuteAsync<RestoreTaskCommand, WorkTask>(new RestoreTaskCommand(id), cancellationToken)
                 .ConfigureAwait(false),
         };
 

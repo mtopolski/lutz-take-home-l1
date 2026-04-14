@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useGetTasks } from '@/hooks/use-get-tasks';
 import { CompleteButton } from './complete-button';
+import { StartButton } from './start-button';
 import { ArchiveButton } from './archive-button';
 import type { Task } from '@/types/task';
 
@@ -45,11 +46,15 @@ export function TaskTable() {
 
   const visibleTasks = filterByTab(tasks, activeTab);
 
+  const getTabCount = (tab: Tab): number => {
+      return filterByTab(tasks, tab).length;
+  };
+
   return (
     <div>
       <div className="flex border-b">
         {tabs.map((tab) => (
-          <button
+          <button 
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-3 text-sm font-medium transition-colors ${
@@ -59,6 +64,10 @@ export function TaskTable() {
             }`}
           >
             {tab.label}
+            <span
+                className="ml-1 text-gray-500">
+                ({getTabCount(tab.id)})
+            </span>
           </button>
         ))}
       </div>
@@ -95,7 +104,14 @@ export function TaskTable() {
                   {activeTab === 'active' && (
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-4">
-                        <CompleteButton taskId={task.id} />
+                        <div className="w-24">
+                          {task.status === "in-progress" && (
+                            <CompleteButton taskId={task.id} />
+                          )}
+                          {task.status === "not-started" && (
+                            <StartButton taskId={task.id} />
+                          )}
+                        </div>
                         <ArchiveButton taskId={task.id} />
                       </div>
                     </td>
